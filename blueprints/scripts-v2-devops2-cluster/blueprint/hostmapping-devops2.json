@@ -1,0 +1,85 @@
+{
+ 
+  "blueprint" : "multi-node-hdp-cluster",
+  "default_password" : "admin",
+  "host_groups" :[
+    {
+      "name" : "host_group_2",
+      "hosts" : [
+        {
+          "fqdn" : "d2-hdp-psql-master1.d2.hwx.com"
+        }
+      ]
+    },
+    {
+      "name" : "host_group_3",
+      "hosts" : [
+        {
+          "fqdn" : "d2-hdp-psql-master2.d2.hwx.com"
+        }
+      ]
+    },
+    {
+      "name" : "host_group_4",
+      "hosts" : [
+        {
+          "fqdn" : "d2-hdp-psql-master3.d2.hwx.com"
+        }
+      ]
+    },
+    {
+      "name" : "host_group_8",
+      "hosts" : [
+        {
+          "fqdn" : "d2-hdp-psql-slavewkr1.d2.hwx.com"
+        },
+        {
+          "fqdn" : "d2-hdp-psql-slavewkr2.d2.hwx.com"
+        }
+      ]
+    },
+	{
+      "name" : "host_group_9",
+      "hosts" : [
+        {
+          "fqdn" : "d2-hdp-psql-slavewkr3.d2.hwx.com"
+        }
+      ]
+    },
+    {
+      "name" : "host_group_1",
+      "hosts" : [
+        {
+          "fqdn" : "d2-hdp-psql-edge1.d2.hwx.com"
+        },
+        {
+          "fqdn" : "d2-hdp-psql-edge2.d2.hwx.com"
+        }
+      ]
+    },
+    {
+      "name" : "host_group_7",
+      "hosts" : [
+        {
+          "fqdn" : "d2-hdp-psql-mgtnode3.d2.hwx.com"
+        }  			
+      ]
+    },
+	{
+      "name" : "host_group_6",
+      "hosts" : [
+        {
+          "fqdn" : "d2-hdp-psql-mgtnode2.d2.hwx.com"
+        }  			
+      ]
+    },
+	{
+      "name" : "host_group_5",
+      "hosts" : [
+        {
+          "fqdn" : "d2-hdp-psql-mgtnode1.d2.hwx.com"
+        }  			
+      ]
+    }		
+  ]
+}

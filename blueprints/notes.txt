@@ -1,0 +1,34 @@
+search for keywords in blueprint file port 2181 for zookeeper,6080 for ranger ,%HOST_GROUP%
+
+1.
+change backend database hostname 
+
+"db_host" : "hwx-dev.rds.amazonaws.com"
+"ranger.jpa.jdbc.url" : "jdbc:postgresql://hwx-dev.rds.amazonaws.com:5432/ranger",
+
+"ranger_privelege_user_jdbc_url" : "jdbc:postgresql://hwx-dev.rds.amazonaws.com:5432/postgres",
+"javax.jdo.option.ConnectionURL" : "jdbc:postgresql://hwx-dev.rds.amazonaws.com:5432/hive",
+"javax.jdo.option.ConnectionUserName" : "hive",
+"javax.jdo.option.ConnectionPassword" : "hive"
+
+2.
+after cluster build check whether these values are replaced
+
+"ranger.audit.solr.zookeepers" : "%HOSTGROUP::master_1%:2181,%HOSTGROUP::master_2%:2181,%HOSTGROUP::mgmt_node_1%:2181/infra-solr",
+"hive.llap.zk.sm.connectionString" : "%HOSTGROUP::master_1%:2181,%HOSTGROUP::master_2%:2181,%HOSTGROUP::master_1%:2181",
+"yarn.resourcemanager.zk-address" : "%HOSTGROUP::master_1%:2181,%HOSTGROUP::master_2%:2181,%HOSTGROUP::master_1%:2181",
+"hadoop.registry.zk.quorum" : "%HOSTGROUP::master_1%:2181,%HOSTGROUP::master_2%:2181,%HOSTGROUP::master_1%:2181",
+"hive.zookeeper.quorum" : "%HOSTGROUP::master_1%:2181,%HOSTGROUP::master_2%:2181,%HOSTGROUP::master_1%:2181",
+
+"hive.cluster.delegation.token.store.zookeeper.connectString" : "%HOSTGROUP::master_1%:2181,%HOSTGROUP::master_2%:2181,%HOSTGROUP::master_1%:2181",
+"templeton.zookeeper.hosts" : "%HOSTGROUP::master_1%:2181,%HOSTGROUP::master_2%:2181,%HOSTGROUP::master_1%:2181",
+"webhcat.proxyuser.root.hosts" : "%HOSTGROUP::mgmt_node_1%",
+
+3.
+
+If the services doesnt startup after enabling ranger plugins verify below property values.
+
+"ranger.plugin.yarn.policy.rest.url" : "http://%HOSTGROUP::mgmt_node_2%:6080",
+"ranger.plugin.hdfs.policy.rest.url" : "http://%HOSTGROUP::mgmt_node_2%:6080"
+"ranger.plugin.hive.policy.rest.url" : "http://%HOSTGROUP::mgmt_node_2%:6080"
+"policymgr_external_url" : "http://%HOSTGROUP::mgmt_node_2%:6080",

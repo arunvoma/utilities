@@ -1,0 +1,80 @@
+
+
+
+
+
+
+
+psql -h XXX -U XXX -WXXX -d postgres -f ./pre-database-req.sql
+
+
+pre-database-req.sql
+
+#below are contents
+
+CREATE DATABASE ambari; 
+CREATE USER ambari WITH PASSWORD 'bigdata';
+GRANT ALL PRIVILEGES ON DATABASE ambari TO ambari; 
+CREATE DATABASE hive;
+CREATE USER hive WITH PASSWORD 'hive';
+GRANT ALL PRIVILEGES ON DATABASE hive TO hive;
+CREATE DATABASE ranger;
+CREATE USER rangeradmin WITH PASSWORD 'rangeradmin';
+GRANT ALL PRIVILEGES ON DATABASE ranger TO rangeradmin;
+GRANT rangeradmin to XXX;
+alter user ambari CREATEDB;
+alter user ambari CREATEROLE;
+
+psql -h dXXX -U ambari -W bigdata -d ambari -f ~/scripts/pre-database-req-1.sql
+
+pre-database-req-1.sql
+
+#below are contents
+ 
+\connect ambari; 
+create schema ambari authorization ambari;
+alter schema ambari owner to ambari;
+alter role ambari set search_path to 'ambari','public';
+
+
+http://XX.XX.XX.XXX:8080/api/v1/hosts
+
+psql -h dXXX -U ambari -W bigdata -d ambari -f /var/lib/ambari-server/resources/Ambari-DDL-Postgres-CREATE.sql
+
+cleanup
+========
+DROP DATABASE ambari; 
+DROP DATABASE hive;
+DROP DATABASE ranger;
+DROP schema ambari; 
+
+if ambari-server doesnt start
+[root@devops1-hdp-psql-mgtnode1 ~]# psql -h dXXX -U ambari -W bigdata -d ambari
+psql: warning: extra command-line argument "bigdata" ignored
+Password for user ambari:
+psql (9.2.23, server 9.6.5)
+WARNING: psql version 9.2, server version 9.6.
+         Some psql features might not work.
+SSL connection (cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256)
+Type "help" for help.
+
+ambari=> \connect ambari;
+Password for user ambari:
+psql (9.2.23, server 9.6.5)
+WARNING: psql version 9.2, server version 9.6.
+         Some psql features might not work.
+SSL connection (cipher: ECDHE-RSA-AES256-GCM-SHA384, bits: 256)
+You are now connected to database "ambari" as user "ambari".
+
+        ^
+ambari=> \i /var/lib/ambari-server/resources/Ambari-DDL-Postgres-CREATE.sql
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+CREATE TABLE
+
+

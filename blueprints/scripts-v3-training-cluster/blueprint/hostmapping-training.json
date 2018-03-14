@@ -1,0 +1,61 @@
+{
+ 
+  "blueprint" : "multi-node-hdp-cluster",
+  "default_password" : "XXX",
+  "host_groups" :[
+    {
+      "name" : "master_1",
+      "hosts" : [
+        {
+          "fqdn" : "XXX-hwx-master1.hwx.com"
+        }
+      ]
+    },
+    {
+      "name" : "master_2",
+      "hosts" : [
+        {
+          "fqdn" : "XXX-hwx-master2.hwx.com"
+        }
+      ]
+    },
+    {
+      "name" : "slave_hosts",
+      "hosts" : [
+        {
+          "fqdn" : "XXX-hwx-slavewkr1.hwx.com"
+        },
+        {
+          "fqdn" : "XXX-hwx-slavewkr2.hwx.com"
+        },
+		{
+          "fqdn" : "XXX-hwx-slavewkr3.hwx.com"
+        }
+      ]
+    },
+	{
+      "name" : "edge_node_1",
+      "hosts" : [
+        {
+          "fqdn" : "XXX-hwx-edge1.hwx.com"
+        }
+      ]
+    },
+    {
+      "name" : "mgmt_node_2",
+      "hosts" : [
+        {
+          "fqdn" : "XXX-hwx-mgtnode2.hwx.com"
+        }  			
+      ]
+    },
+	{
+      "name" : "mgmt_node_1",
+      "hosts" : [
+        {
+          "fqdn" : "XXX-hwx-mgtnode1.hwx.com"
+        }  			
+      ]
+    }		
+  ]
+}
