@@ -57,10 +57,10 @@ ssh -o StrictHostKeyChecking=no $host 'yum repolist'
 ssh -o StrictHostKeyChecking=no $host 'yum-config-manager --enable rhui-REGION-rhel-server-optional'
 ssh -o StrictHostKeyChecking=no $host 'yum install -y libtirpc-devel'
 ssh -o StrictHostKeyChecking=no $host 'yum install -y wget '
-ssh -o StrictHostKeyChecking=no $host 'wget https://s3.amazonaws.com/vtx-devops/hadoop/repo/ambari.repo -O /etc/yum.repos.d/ambari.repo'
-ssh -o StrictHostKeyChecking=no $host 'wget https://s3.amazonaws.com/vtx-devops/hadoop/repo/HDP-2.6.1.49-2.repo -O /etc/yum.repos.d/HDP-2.6.1.49-2.repo'
-ssh -o StrictHostKeyChecking=no $host 'wget https://s3.amazonaws.com/vtx-devops/hadoop/repo/HDP-UTILS.repo -O /etc/yum.repos.d/HDP-UTILS.repo'
-ssh -o StrictHostKeyChecking=no $host 'wget https://s3.amazonaws.com/vtx-devops/hadoop/repo/HDP.repo -O /etc/yum.repos.d/HDP.repo'
+ssh -o StrictHostKeyChecking=no $host 'wget https://s3.amazonaws.com/XXXXX/hadoop/repo/ambari.repo -O /etc/yum.repos.d/ambari.repo'
+ssh -o StrictHostKeyChecking=no $host 'wget https://s3.amazonaws.com/XXXXX/hadoop/repo/HDP-2.6.1.49-2.repo -O /etc/yum.repos.d/HDP-2.6.1.49-2.repo'
+ssh -o StrictHostKeyChecking=no $host 'wget https://s3.amazonaws.com/XXXXX/hadoop/repo/HDP-UTILS.repo -O /etc/yum.repos.d/HDP-UTILS.repo'
+ssh -o StrictHostKeyChecking=no $host 'wget https://s3.amazonaws.com/XXXXX/hadoop/repo/HDP.repo -O /etc/yum.repos.d/HDP.repo'
 ssh -o StrictHostKeyChecking=no $host 'yum clean all'
 ssh -o StrictHostKeyChecking=no $host 'yum repolist'
 ssh -o StrictHostKeyChecking=no $host 'ls -l /etc/yum.repos.d/'
@@ -88,7 +88,7 @@ pdsh 'sysctl vm.swappiness=1'
 pdsh 'echo "*                soft    nofile          65536" >> /etc/security/limits.conf '
 pdsh 'echo "*                hard    nofile          65536" >> /etc/security/limits.conf '
 echo "Download JAVA Package and set JAVA_HOME"
-pdsh 'cd /tmp;wget http://vtxhdp.s3.amazonaws.com/AllNodes/jdk-8u151-linux-x64.rpm'
+pdsh 'cd /tmp;wget http://XXX.amazonaws.com/AllNodes/jdk-8u151-linux-x64.rpm'
 pdsh 'rpm -ivh /tmp/jdk-8u151-linux-x64.rpm'
 pdsh 'alternatives --install /usr/bin/java java /usr/java/jdk1.8.0_151/bin/java 2'
 pdsh 'alternatives --set java /usr/java/jdk1.8.0_151/bin/java'
@@ -120,8 +120,8 @@ grep -i jdbc /etc/ambari-server/conf/ambari.properties
 
 function ambariserversetup {
 
-export PGPASSWORD=v_dbadmin
-psql -h ${databasehost} -U v_dbadmin -d postgres -f $dbcmdsfile
+export PGPASSWORD=XXXXX
+psql -h ${databasehost} -U XXXXX -d postgres -f $dbcmdsfile
 export PGPASSWORD=bigdata
 psql -h ${databasehost} -U ambari -d ambari -f $dbcmds1file
 psql -h ${databasehost} -U ambari -d ambari -f /var/lib/ambari-server/resources/Ambari-DDL-Postgres-CREATE.sql
@@ -181,10 +181,10 @@ function clusterbuild {
 
 
 
-curl -H "X-Requested-By: ambari" -X POST -u admin:admin http://${ambariserverip}:8080/api/v1/blueprints/${clustername} -d @${blueprintfile}
-curl -H "X-Requested-By: ambari" -X PUT -u admin:admin http://${ambariserverip}:8080/api/v1/stacks/HDP/versions/2.6/operating_systems/redhat7/repositories/HDP-2.6 -d @${hdprepofile}
-curl -H "X-Requested-By: ambari" -X PUT -u admin:admin http://${ambariserverip}:8080/api/v1/stacks/HDP/versions/2.6/operating_systems/redhat7/repositories/HDP-UTILS-1.1.0.21 -d @${hdputilfile}
-curl -H "X-Requested-By: ambari" -X POST -u admin:admin http://${ambariserverip}:8080/api/v1/clusters/${clustername} -d @${hostmappingfile}
+curl -H "X-Requested-By: ambari" -X POST -u admin:XXXX http://${ambariserverip}:8080/api/v1/blueprints/${clustername} -d @${blueprintfile}
+curl -H "X-Requested-By: ambari" -X PUT -u admin:XXXX http://${ambariserverip}:8080/api/v1/stacks/HDP/versions/2.6/operating_systems/redhat7/repositories/HDP-2.6 -d @${hdprepofile}
+curl -H "X-Requested-By: ambari" -X PUT -u admin:XXXX http://${ambariserverip}:8080/api/v1/stacks/HDP/versions/2.6/operating_systems/redhat7/repositories/HDP-UTILS-1.1.0.21 -d @${hdputilfile}
+curl -H "X-Requested-By: ambari" -X POST -u admin:XXXX http://${ambariserverip}:8080/api/v1/clusters/${clustername} -d @${hostmappingfile}
 
 }
 
@@ -192,8 +192,8 @@ function cleanup {
 
 
 ambari-server stop
-export PGPASSWORD=v_dbadmin
-psql -h ${databasehost} -U v_dbadmin -d postgres -f $dropdbcmdsfile
+export PGPASSWORD=XXXXX
+psql -h ${databasehost} -U XXXXX -d postgres -f $dropdbcmdsfile
  
 
 export WCOLL=./all.hosts

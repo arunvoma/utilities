@@ -76,7 +76,7 @@
           "db_user" : "rangeradmin",
 		  "db_password" : "rangeradmin",
           "SQL_CONNECTOR_JAR" : "{{driver_curl_target}}",
-          "db_host" : "devops1-hdp-psql-rds1.cpmthsdampr7.us-east-1.rds.amazonaws.com"
+          "db_host" : "XXXXX"
         }
       }
     },
@@ -273,7 +273,7 @@
           "gateway.host" : "embedded",
           "server.port" : "9000",
           "server.tmp.dir" : "/hadoop/smartsense/hst-server/tmp",
-          "server.url" : "http://perf-hdp-mgtnode3.dev.hwx.com:9000",
+          "server.url" : "http://XXX:9000",
           "customer.smartsense.id" : "XXXX"
         }
       }
@@ -441,7 +441,7 @@
           "ranger.kms.service.user.hdfs" : "hdfs",
           "ranger.plugins.storm.serviceuser" : "storm",
           "ranger.spnego.kerberos.keytab" : "",
-          "ranger.jpa.jdbc.url" : "jdbc:postgresql://devops1-hdp-psql-rds1.cpmthsdampr7.us-east-1.rds.amazonaws.com:5432/ranger",
+          "ranger.jpa.jdbc.url" : "jdbc:postgresql://XXXXX:5432/ranger",
           "ranger.service.host" : "{{ranger_host}}",
           "ranger.ldap.bind.dn" : "{{ranger_ug_ldap_bind_dn}}",
           "ranger.service.http.port" : "6080",
@@ -462,7 +462,7 @@
           "ranger.plugins.hbase.serviceuser" : "hbase",
           "ranger.audit.source.type" : "solr",
           "ranger.service.https.attrib.keystore.credential.alias" : "keyStoreCredentialAlias",
-          "ranger.audit.solr.zookeepers" : "perf-hdp-master1.dev.hwx.com:2181,perf-hdp-master2.dev.hwx.com:2181,perf-hdp-master3.dev.hwx.com:2181/infra-solr",
+          "ranger.audit.solr.zookeepers" : "XXXXX:2181,XXXXX:2181,XXXXX:2181/infra-solr",
           "ranger.admin.kerberos.keytab" : "",
           "ranger.externalurl" : "{{ranger_external_url}}",
           "ranger.plugins.hdfs.serviceuser" : "hdfs",
@@ -481,7 +481,7 @@
           "ranger-hdfs-plugin-enabled" : "No",
           "ranger_solr_config_set" : "ranger_audits",
           "xasecure.audit.destination.hdfs.dir" : "hdfs://%HOSTGROUP::host_group_2%:8020/ranger/audit",
-          "ranger_privelege_user_jdbc_url" : "jdbc:postgresql://devops1-hdp-psql-rds1.cpmthsdampr7.us-east-1.rds.amazonaws.com:5432/postgres",
+          "ranger_privelege_user_jdbc_url" : "jdbc:postgresql://XXXXX:5432/postgres",
           "ranger-kafka-plugin-enabled" : "No",
           "ranger-nifi-plugin-enabled" : "No",
           "ranger_user" : "ranger",
@@ -1917,7 +1917,7 @@
           "hive.auto.convert.sortmerge.join" : "true",
           "hive.zookeeper.namespace" : "hive_zookeeper_namespace",
 		  "javax.jdo.option.ConnectionDriverName" : "org.postgresql.Driver",
-		  "javax.jdo.option.ConnectionURL" : "jdbc:postgresql://devops1-hdp-psql-rds1.cpmthsdampr7.us-east-1.rds.amazonaws.com:5432/hive",
+		  "javax.jdo.option.ConnectionURL" : "jdbc:postgresql://XXXXX:5432/hive",
 		  "javax.jdo.option.ConnectionUserName" : "hive",
 		  "javax.jdo.option.ConnectionPassword" : "hive"
 		  
