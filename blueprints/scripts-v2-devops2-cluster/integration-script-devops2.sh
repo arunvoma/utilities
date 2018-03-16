@@ -5,6 +5,8 @@
 
 #Pre-req:- Once you have all hosts ready and FQDN are set then execute this script
 #Password-less SSH needs to setup in advance from ambari server to all other hosts.
+#Please verify before you run the script hostnames and IP are correctly set.
+#This script has been tested for blueprint with 3 mgmt nodes,3 masters,3 slaves and 2 edge nodes.
 
 #!/bin/bash#
 
