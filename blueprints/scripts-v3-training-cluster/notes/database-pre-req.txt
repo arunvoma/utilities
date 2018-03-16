@@ -25,7 +25,7 @@ GRANT rangeradmin to XXX;
 alter user ambari CREATEDB;
 alter user ambari CREATEROLE;
 
-psql -h dXXX -U ambari -W bigdata -d ambari -f ~/scripts/pre-database-req-1.sql
+psql -h dXXX -U XXXX -W XXXXX -d ambari -f ~/scripts/pre-database-req-1.sql
 
 pre-database-req-1.sql
 
